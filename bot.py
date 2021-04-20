@@ -2,6 +2,7 @@ import sys
 import os 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from app import importarImagen
+from textos import classify
 
 
 token = "1755655581:AAG29qRQS1SBK6yPsQ3D6hL0zGdYDg74BnU"
@@ -17,6 +18,7 @@ def start(bot, update):
 
 def echo(bot, update):
     try:
+        classify(text)
         text = update.message.text
         update.message.reply_text(text)
     except Exception as error:

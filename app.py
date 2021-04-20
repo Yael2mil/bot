@@ -1,6 +1,7 @@
 import tensorflow.keras
 from PIL import Image, ImageOps
 import numpy as np
+import requests
 
 
 def importarImagen(ruta):
@@ -28,16 +29,16 @@ def importarImagen(ruta):
 
     for i in prediction:
         if i[0] > 0.8:
-            resultado = "Mamifero"
+            resultado = "Es un mamifero"
             return resultado
         elif i[1] > 0.8:
-            resultado = "Ave"
+            resultado = "Es un ave"
             return resultado
         elif i[2] > 0.8:
-            resultado = "Reptil"
+            resultado = "Es un reptil"
             return resultado
         elif i[3] > 0.8:
-            resultado = "Pez"
+            resultado = "Es un pez"
             return resultado
         else:
             resultado = "no se logro identificar una especie para esta imagen"
