@@ -3,6 +3,8 @@ import os
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from app import importarImagen
 import requests
+from textos import *
+
 
 
 
@@ -10,9 +12,11 @@ token = "1755655581:AAG29qRQS1SBK6yPsQ3D6hL0zGdYDg74BnU"
 
 def start(bot, update):
     try:
+
         username = update.message.from_user.username
         message = "Hola " + username
         update.message.reply_text(message) 
+        
     except Exception as error:
         print ("Error 001 {}".format(error.args[0]))
 
@@ -22,12 +26,15 @@ def echo(bot, update):
     try:
         
         text = update.message.text
-        update.message.reply_text(text)
+        update.message.reply_text(classify(text))
+        
         
     except Exception as error:
         print ("Error 002 {}".format(error.args[0]))
 
 
+    
+    
 
 
 def help(bot, update):
@@ -53,7 +60,7 @@ def main():
 
         dp.add_handler(MessageHandler(Filters.text,echo))
         dp.add_handler(MessageHandler(Filters.photo, getImage))
-        dp.add_handler(MessageHandler(Filters.text, classify))
+        
 
         dp.add_error_handler(error)
 
