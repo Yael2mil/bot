@@ -2,7 +2,8 @@ import sys
 import os 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from app import importarImagen
-from textos import classify
+import requests
+
 
 
 token = "1755655581:AAG29qRQS1SBK6yPsQ3D6hL0zGdYDg74BnU"
@@ -16,18 +17,22 @@ def start(bot, update):
         print ("Error 001 {}".format(error.args[0]))
 
 
+
 def echo(bot, update):
     try:
-        classify(text)
+        
         text = update.message.text
         update.message.reply_text(text)
+        
     except Exception as error:
         print ("Error 002 {}".format(error.args[0]))
 
 
+
+
 def help(bot, update):
     try:
-        message = "Puedes enviar texto o imagenes"
+        message = "Que necesitas saber?"
         update.message.reply_text(message)
     except Exception as error:
         print ("Error 003 {}".format(error.args[0]))
@@ -48,6 +53,7 @@ def main():
 
         dp.add_handler(MessageHandler(Filters.text,echo))
         dp.add_handler(MessageHandler(Filters.photo, getImage))
+        dp.add_handler(MessageHandler(Filters.text, classify))
 
         dp.add_error_handler(error)
 

@@ -1,5 +1,6 @@
 import requests
 
+
 # This function will pass your text to the machine learning model
 # and return the top result with the highest confidence
 def classify(text):
@@ -15,9 +16,9 @@ def classify(text):
     else:
         response.raise_for_status()
 
-
+ 
 # CHANGE THIS to something you want your machine learning model to classify
-demo = classify()
+demo = classify("ave")
 
 label = demo["class_name"]
 confidence = demo["confidence"]
